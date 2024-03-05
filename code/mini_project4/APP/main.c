@@ -1,0 +1,45 @@
+/*
+ * main.c
+ *
+ *  Created on: Oct 15, 2023
+ *      Author: mario
+ */
+
+#include"HAL/LCD.h"
+#include"HAL/ultraSonic.h"
+#include"HAL/MCAL/AVRIO.h"
+
+int main(){
+
+	SREG_R.bit.I_bit = 1;
+
+	uint16 distanceMeasured;
+
+	/* Initialize LCD and ultra-sonic */
+	LCD_init();
+	ULTRASONIC_init();
+
+	LCD_displayStringRowColumn("Distance = ",1,0);
+
+	while(1){
+
+		distanceMeasured = ULTRASONIC_readDistance();
+
+		/* Place cursor after Distance = */
+		LCD_moveCursor(1,11);
+		if(distanceMeasured < 10){
+
+			LCD_intgerToString(distanceMeasured);
+			LCD_displayCharacter(' '); /* To remove  character if exist */
+			LCD_displayCharacter(' '); /* To remove  character if exist */
+		}
+		else if(distanceMeasured < 100){
+			LCD_intgerToString(distanceMeasured);
+			LCD_displayCharacter(' '); /* To remove  character if exist */
+		}
+		else{
+
+			LCD_intgerToString(distanceMeasured);
+		}
+	}
+}

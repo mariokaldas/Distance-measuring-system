@@ -1,0 +1,33 @@
+22:34:37 **** Incremental Build of configuration Debug for project mini_project4 ****
+make all 
+Building file: ../APP/main.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega32 -DF_CPU=8000000UL -MMD -MP -MF"APP/main.d" -MT"APP/main.o" -c -o "APP/main.o" "../APP/main.c"
+../APP/main.c: In function 'main':
+../APP/main.c:22: warning: pointer targets in passing argument 1 of 'LCD_displayStringRowColumn' differ in signedness
+Finished building: ../APP/main.c
+ 
+Building target: mini_project4.elf
+Invoking: AVR C Linker
+avr-gcc -Wl,-Map,mini_project4.map -mmcu=atmega32 -o "mini_project4.elf"  ./APP/HAL/MCAL/ICU.o ./APP/HAL/MCAL/gpio.o  ./APP/HAL/LCD.o ./APP/HAL/ultraSonic.o  ./APP/main.o   
+Finished building target: mini_project4.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S mini_project4.elf  >"mini_project4.lss"
+Finished building: mini_project4.lss
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega32 mini_project4.elf
+AVR Memory Usage
+----------------
+Device: atmega32
+
+Program:    9800 bytes (29.9% Full)
+(.text + .data + .bootloader)
+
+Data:        283 bytes (13.8% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
